@@ -48,6 +48,10 @@ namespace kigyo
                     canvas.Children.Add(palya[i,j]);
                 }
             }
+
+            Position gyumi = new Position();
+            racs[gyumi.X, gyumi.Y] = 2;
+
             Draw();
         }
 
