@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.ActiveDirectory;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -23,6 +24,7 @@ namespace kigyo
     {
 
         Image[,] palya = new Image[20, 20];
+        int[,]racs = new int[20, 20];
 
         public MainWindow()
         {
@@ -46,8 +48,30 @@ namespace kigyo
                     canvas.Children.Add(palya[i,j]);
                 }
             }
+            Draw();
         }
 
+        private void Draw()
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                for (int j = 0; j < 20; j++)
+                {
+                    if (racs[i,j]  == 0)
+                    {
+                        palya[i, j].Source = new BitmapImage(new Uri("Images/TileGreen.png", UriKind.Relative));
+                    }                    
+                    if (racs[i,j]  == 1)
+                    {
+                        palya[i, j].Source = new BitmapImage(new Uri("Images/TileGreen.png", UriKind.Relative));
+                    }                    
+                    if (racs[i,j]  == 2)
+                    {
+                        palya[i,j].Source = new BitmapImage(new Uri("Images/TileGreen.png", UriKind.Relative));
+                    }
+                }
+            }
+        }
         private void canvas_Loaded(object sender, RoutedEventArgs e)
         {
             
