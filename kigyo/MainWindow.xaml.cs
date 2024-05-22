@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 namespace kigyo
@@ -30,6 +31,7 @@ namespace kigyo
                 SnakeBody.Add(new Position(9, i));
                 racs[9, i] = 1;
             }
+            DrawSnake();
         }
 
         private void Init()
@@ -56,6 +58,26 @@ namespace kigyo
 
         }
 
+        private void DrawSnake()
+        {
+            foreach(var item in SnakeBody)
+            {
+                racs[item.X, item.Y] = 1;
+            }
+        }
+
+        private void stepDown()
+        {
+            Position head = SnakeBody[SnakeBody.Count - 1];
+            Position newHead = new Position(head.X, head.Y+1);
+            SnakeBody.Add(newHead);
+            racs[SnakeBody[0].X, SnakeBody[0].Y] = 0;
+            racs[newHead.X, newHead.Y] = 1;
+            SnakeBody.Remove(SnakeBody[0]);
+            //DrawSnake();
+            Draw();
+        }
+
         private void Draw()
         {
             for (int i = 0; i < 20; i++)
@@ -80,6 +102,14 @@ namespace kigyo
         private void canvas_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            switch(e.Key)
+            {
+                case Key.Down: stepDown(); break;
+            }
         }
     }
 }
