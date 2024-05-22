@@ -25,11 +25,22 @@ namespace kigyo
 
         Image[,] palya = new Image[20, 20];
         int[,]racs = new int[20, 20];
+         public List<Position> SnakeBody = new List<Position>();
 
         public MainWindow()
         {
             InitializeComponent();
             Init();
+            Draw();
+        }
+
+        private void InitSnake()
+        {
+            for(int i = 0; i < 10; i++) 
+            {
+                SnakeBody.Add(new Position(9, i));
+                racs[9, i] = 1;
+            }
         }
 
         private void Init()
@@ -52,7 +63,8 @@ namespace kigyo
             Position gyumi = new Position();
             racs[gyumi.X, gyumi.Y] = 2;
 
-            Draw();
+            InitSnake();
+            
         }
 
         private void Draw()
@@ -67,11 +79,11 @@ namespace kigyo
                     }                    
                     if (racs[i,j]  == 1)
                     {
-                        palya[i, j].Source = new BitmapImage(new Uri("Images/TileGreen.png", UriKind.Relative));
+                        palya[i, j].Source = new BitmapImage(new Uri("Images/TileBlue.png", UriKind.Relative));
                     }                    
                     if (racs[i,j]  == 2)
                     {
-                        palya[i,j].Source = new BitmapImage(new Uri("Images/TileGreen.png", UriKind.Relative));
+                        palya[i,j].Source = new BitmapImage(new Uri("Images/TilePurple.png", UriKind.Relative));
                     }
                 }
             }
