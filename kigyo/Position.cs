@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace kigyo
 {
@@ -16,12 +11,12 @@ namespace kigyo
         {
             X = x;
             Y = y;
-        }           
+        }
         public Position(Position p)
         {
             X = p.X;
             Y = p.Y;
-        }        
+        }
         public Position()
         {
             Random rnd = new Random();
